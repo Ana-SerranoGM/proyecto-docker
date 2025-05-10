@@ -1,0 +1,116 @@
+DROP DATABASE IF EXISTS tienda_ropa;
+CREATE DATABASE IF NOT EXISTS tienda_ropa;
+USE tienda_ropa;
+
+CREATE TABLE productos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    tiene_tallas BOOLEAN DEFAULT FALSE,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE carrito (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(255) NOT NULL,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+
+CREATE TABLE imagenes_producto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    producto_id INT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    orden INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE tallas_producto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    producto_id INT NOT NULL,
+    talla VARCHAR(10) NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_producto_talla (producto_id, talla)
+);
+
+-- Insertar productos de ejemplo
+INSERT INTO productos (nombre, descripcion, precio, tiene_tallas) VALUES
+('Camisa Ron', 'Camisa de diseño clásico perfecta para ocasiones formales y casuales.', 59.99, TRUE),
+('Camiseta Towne', 'Camiseta casual con un diseño minimalista y cómodo.', 29.99, TRUE),
+('Pantalón Patrick', 'Pantalón de corte recto con un diseño versátil y moderno.', 89.99, TRUE),
+('Pantalón Guy', 'Pantalón de diseño clásico con un toque contemporáneo.', 79.99, TRUE),
+('Chaqueta Barry', 'Chaqueta de diseño elegante con detalles en los bordes.', 149.99, TRUE),
+('Chaqueta Heaton', 'Chaqueta de diseño moderno con múltiples bolsillos.', 139.99, TRUE),
+('Chaqueta Lloyd', 'Chaqueta versátil perfecta para cualquier ocasión.', 129.99, TRUE),
+('Bolso Ryan', 'Bolso de diseño moderno con múltiples compartimentos.', 79.99, FALSE),
+('Bufanda Charlie', 'Bufanda de diseño clásico con detalles en los bordes.', 42.99, FALSE),
+('Bufanda Dan', 'Bufanda de diseño minimalista con acabados de calidad.', 39.99, FALSE),
+('Sombrero Snow', 'Sombrero de diseño clásico con detalles en los bordes.', 49.99, FALSE),
+('Sombrero Merv', 'Sombrero de diseño minimalista con acabados de calidad.', 45.99, FALSE),
+('Camisa Jude', 'Camisa de diseño moderno con detalles únicos.', 54.99, TRUE),
+('Camisa Matthew', 'Camisa casual con un toque elegante.', 49.99, TRUE),
+('Camisa Kurt', 'Camisa versátil para cualquier ocasión.', 44.99, TRUE),
+('Pantalón Mantis', 'Pantalón de diseño contemporáneo con corte recto.', 84.99, TRUE),
+('Pantalón Bob', 'Pantalón casual con un diseño cómodo y moderno.', 74.99, TRUE),
+('Pantalón Bailey', 'Pantalón de diseño clásico con un toque moderno.', 69.99, TRUE),
+('Chaqueta Ryan', 'Chaqueta de diseño elegante con múltiples detalles.', 159.99, TRUE),
+('Zapatillas Dash', 'Zapatillas deportivas con un diseño moderno y cómodo.', 89.99, TRUE),
+('Zapatillas Lafayette', 'Zapatillas casuales con un diseño versátil.', 79.99, TRUE),
+('Zapatillas Riley', 'Zapatillas deportivas con un diseño minimalista.', 84.99, TRUE),
+('Sandalias Chris', 'Sandalias casuales perfectas para el verano.', 49.99, TRUE),
+('Cartera Christophe', 'Cartera de diseño elegante con múltiples compartimentos.', 69.99, FALSE),
+('Gafas de sol Levon', 'Gafas de sol con un diseño moderno y protección UV.', 89.99, FALSE);
+
+-- Insertar tallas para productos que las tienen
+INSERT INTO tallas_producto (producto_id, talla, stock) VALUES
+(1, 'S', 10), (1, 'M', 15), (1, 'L', 10), (1, 'XL', 5),
+(2, 'S', 10), (2, 'M', 15), (2, 'L', 10), (2, 'XL', 5),
+(3, 'S', 10), (3, 'M', 15), (3, 'L', 10), (3, 'XL', 5),
+(4, 'S', 10), (4, 'M', 15), (4, 'L', 10), (4, 'XL', 5),
+(5, 'S', 10), (5, 'M', 15), (5, 'L', 10), (5, 'XL', 5),
+(6, 'S', 10), (6, 'M', 15), (6, 'L', 10), (6, 'XL', 5),
+(7, 'S', 10), (7, 'M', 15), (7, 'L', 10), (7, 'XL', 5),
+(13, 'S', 10), (13, 'M', 15), (13, 'L', 10), (13, 'XL', 5),
+(14, 'S', 10), (14, 'M', 15), (14, 'L', 10), (14, 'XL', 5),
+(15, 'S', 10), (15, 'M', 15), (15, 'L', 10), (15, 'XL', 5),
+(16, 'S', 10), (16, 'M', 15), (16, 'L', 10), (16, 'XL', 5),
+(17, 'S', 10), (17, 'M', 15), (17, 'L', 10), (17, 'XL', 5),
+(18, 'S', 10), (18, 'M', 15), (18, 'L', 10), (18, 'XL', 5),
+(19, 'S', 10), (19, 'M', 15), (19, 'L', 10), (19, 'XL', 5),
+(20, '38', 10), (20, '39', 15), (20, '40', 10), (20, '41', 5), (20, '42', 5), (20, '43', 5),
+(21, '38', 10), (21, '39', 15), (21, '40', 10), (21, '41', 5), (21, '42', 5), (21, '43', 5),
+(22, '38', 10), (22, '39', 15), (22, '40', 10), (22, '41', 5), (22, '42', 5), (22, '43', 5),
+(23, '38', 10), (23, '39', 15), (23, '40', 10), (23, '41', 5), (23, '42', 5), (23, '43', 5);
+
+-- Insertar imágenes de ejemplo
+INSERT INTO imagenes_producto (producto_id, url, orden) VALUES
+(1, 'img/Ron-Shirt_front.jpg', 1), (1, 'img/Ron-Shirt_back.jpg', 2), (1, 'img/Ron-Shirt_side.jpg', 3), (1, 'img/Ron-Shirt_detail.jpg', 4),
+(2, 'img/Towne-Shirt_front.jpg', 1), (2, 'img/Towne-Shirt_back.jpg', 2), (2, 'img/Towne-Shirt_side.jpg', 3), (2, 'img/Towne-Shirt_detail.jpg', 4),
+(3, 'img/Patrick-Pant_full.jpg', 1), (3, 'img/Patrick-Pant_back.jpg', 2), (3, 'img/Patrick-Pant_side.jpg', 3), (3, 'img/Patrick-Pant_detail.jpg', 4),
+(4, 'img/Guy-Pant_full.jpg', 1), (4, 'img/Guy-Pant_back.jpg', 2), (4, 'img/Guy-Pant_side.jpg', 3), (4, 'img/Guy-Pant_detail.jpg', 4),
+(5, 'img/Barry-Jacket_front.jpg', 1), (5, 'img/Barry-Jacket_back.jpg', 2), (5, 'img/Barry-Jacket_side.jpg', 3), (5, 'img/Barry-Jacket_detail.jpg', 4),
+(6, 'img/Heaton-Jacket_front.jpg', 1), (6, 'img/Heaton-Jacket_back.jpg', 2), (6, 'img/Heaton-Jacket_side.jpg', 3), (6, 'img/Heaton-Jacket_detail.jpg', 4),
+(7, 'img/Lloyd-Jean_front.jpg', 1), (7, 'img/Lloyd-Jean_side.jpg', 2), (7, 'img/Lloyd-Jean_detail.jpg', 3),
+(8, 'img/Ryan-Bag_1.jpg', 1), (8, 'img/Ryan-Bag_2.jpg', 2), (8, 'img/Ryan-Bag_3.jpg', 3), (8, 'img/Ryan-Bag_4.jpg', 4),
+(9, 'img/Charlie-Scarf_1.jpg', 1), (9, 'img/Charlie-Scarf_2.jpg', 2), (9, 'img/Charlie-Scarf_3.jpg', 3), (9, 'img/Charlie-Scarf_4.jpg', 4),
+(10, 'img/Dan-Scarf_1.jpg', 1), (10, 'img/Dan-Scarf_2.jpg', 2), (10, 'img/Dan-Scarf_3.jpg', 3), (10, 'img/Dan-Scarf_4.jpg', 4),
+(11, 'img/Snow-Hat_1.jpg', 1), (11, 'img/Snow-Hat_2.jpg', 2), (11, 'img/Snow-Hat_3.jpg', 3), (11, 'img/Snow-Hat_4.jpg', 4),
+(12, 'img/Merv-Hat_1.jpg', 1), (12, 'img/Merv-Hat_2.jpg', 2), (12, 'img/Merv-Hat_3.jpg', 3), (12, 'img/Merv-Hat_4.jpg', 4),
+(13, 'img/Jude-Shirt_front.jpg', 1), (13, 'img/Jude-Shirt_back.jpg', 2), (13, 'img/Jude-Shirt_side.jpg', 3), (13, 'img/Jude-Shirt_detail.jpg', 4),
+(14, 'img/Matthew-Shirt_front.jpg', 1), (14, 'img/Matthew-Shirt_back.jpg', 2), (14, 'img/Matthew-Shirt_side.jpg', 3), (14, 'img/Matthew-Shirt_detail.jpg', 4),
+(15, 'img/Kurt-Shirt_front.jpg', 1), (15, 'img/Kurt-Shirt_back.jpg', 2), (15, 'img/Kurt-Shirt_side.jpg', 3), (15, 'img/Kurt-Shirt_detail.jpg', 4),
+(16, 'img/Mantis-Pant_full.jpg', 1), (16, 'img/Mantis-Pant_back.jpg', 2), (16, 'img/Mantis-Pant_side.jpg', 3), (16, 'img/Mantis-Pant_detail.jpg', 4),
+(17, 'img/Bob-Short_full.jpg', 1), (17, 'img/Bob-Short_back.jpg', 2), (17, 'img/Bob-Short_side.jpg', 3), (17, 'img/Bob-Short_detail.jpg', 4),
+(18, 'img/Bailey-Short_full.jpg', 1), (18, 'img/Bailey-Short_back.jpg', 2), (18, 'img/Bailey-Short_side.jpg', 3), (18, 'img/Bailey-Short_detail.jpg', 4),
+(19, 'img/Ryan-Jacket_front.jpg', 1), (19, 'img/Ryan-Jacket_back.jpg', 2), (19, 'img/Ryan-Jacket_side.jpg', 3), (19, 'img/Ryan-Jacket_detail.jpg', 4),
+(20, 'img/Dash-Sneaker_1.jpg', 1), (20, 'img/Dash-Sneaker_2.jpg', 2), (20, 'img/Dash-Sneaker_3.jpg', 3), (20, 'img/Dash-Sneaker_4.jpg', 4),
+(21, 'img/Lafayette-Sneaker_1.jpg', 1), (21, 'img/Lafayette-Sneaker_2.jpg', 2), (21, 'img/Lafayette-Sneaker_3.jpg', 3), (21, 'img/Lafayette-Sneaker_4.jpg', 4),
+(22, 'img/Riley-Sneaker_1.jpg', 1), (22, 'img/Riley-Sneaker_2.jpg', 2), (22, 'img/Riley-Sneaker_3.jpg', 3), (22, 'img/Riley-Sneaker_4.jpg', 4),
+(23, 'img/Chris-Sandal_1.jpg', 1), (23, 'img/Chris-Sandal_2.jpg', 2), (23, 'img/Chris-Sandal_3.jpg', 3), (23, 'img/Chris-Sandal_4.jpg', 4),
+(24, 'img/Christophe-Wallet_1.jpg', 1), (24, 'img/Christophe-Wallet_2.jpg', 2), (24, 'img/Christophe-Wallet_3.jpg', 3), (24, 'img/Christophe-Wallet_4.jpg', 4),
+(25, 'img/Levon-Sunglasses_1.jpg', 1), (25, 'img/Levon-Sunglasses_2.jpg', 2), (25, 'img/Levon-Sunglasses_3.jpg', 3), (25, 'img/Levon-Sunglasses_4.jpg', 4); 

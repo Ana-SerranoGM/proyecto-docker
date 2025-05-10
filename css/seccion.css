@@ -1,0 +1,35 @@
+.main-images {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.model-image, .texture-image {
+    width: 100%;
+    height: auto; /* Altura completa de la ventana */
+    overflow: visible;
+}
+
+.model-image img, .texture-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene la proporción y cubre todo el espacio */
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .image-container {
+        grid-template-columns: 1fr; /* En móvil, las imágenes se apilan */
+    }
+    
+    .model-image, .texture-image {
+        height: auto; /* Mitad de la altura en móvil */
+    }
+}

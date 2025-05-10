@@ -1,0 +1,114 @@
+@import "color.css";
+
+@import "common.css";
+
+@import "header.css";
+
+@import "seccion.css";
+
+@import "productos.css";
+
+@import "sections.css";
+
+/* Estilos del Footer */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 4rem 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ccc;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ccc;
+}
+
+.newsletter {
+    text-align: left;
+}
+
+.newsletter h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+}
+
+.newsletter-form input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #333;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #ccc;
+}
+
+.footer-copyright {
+    text-align: left;
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    grid-column: 1 / -1;
+}

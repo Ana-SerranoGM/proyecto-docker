@@ -1,0 +1,69 @@
+.main-images {
+    position: relative;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.model-image img, .texture-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 30px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.center-button:hover {
+    background: black;
+    color: white;
+}
+
+.split-container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+.left-image, .right-image {
+    flex: 1;
+    height: 100%;
+}
+
+.left-image img, .right-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ver-productos {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    z-index: 2;
+}
+
+.ver-productos:hover {
+    background: black;
+    color: white;
+} 

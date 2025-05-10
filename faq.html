@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - SEEN THE LABEL</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .faq-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.active {
+            transform: rotate(45deg);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="nav-container">
+        <div class="nav-left">
+            <a href="index.html">Tienda</a>
+            <a href="about.html">Acerca de</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="nav-center">
+            <a href="index.html" class="logo">SEEN THE LABEL</a>
+        </div>
+        <div class="nav-right">
+            <a href="login/index.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="carrito.php" class="cart-icon">
+                🛒
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="faq-container">
+        <h1 class="section-title">Preguntas Frecuentes</h1>
+
+        <div class="faq-section">
+            <h2 class="section-title">Pedidos y Envíos</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuánto tiempo tarda en llegar mi pedido?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Los pedidos suelen ser procesados en 1-2 días laborables. El tiempo de entrega varía según la zona:
+                    <ul>
+                        <li>Península Ibérica: 3-5 días laborables</li>
+                        <li>Islas Baleares y Canarias: 5-7 días laborables</li>
+                        <li>Europa: 5-10 días laborables</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Ofrecen envío gratuito?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sí, ofrecemos envío gratuito para todos los pedidos superiores a 100€. Para pedidos inferiores, el coste de envío se calculará en el momento de la compra.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Puedo hacer un seguimiento de mi pedido?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sí, una vez que tu pedido sea enviado, recibirás un email con el número de seguimiento y un enlace para rastrear tu paquete.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="section-title">Devoluciones y Cambios</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuánto tiempo tengo para devolver un producto?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Dispones de 30 días naturales desde la fecha de recepción para devolver tu compra. Los productos deben estar en su estado original, sin usar y con todas las etiquetas.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo puedo devolver un producto?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Para devolver un producto, sigue estos pasos:
+                    <ol>
+                        <li>Contacta con nuestro servicio de atención al cliente</li>
+                        <li>Indica el número de pedido y los productos que deseas devolver</li>
+                        <li>Recibirás una etiqueta de devolución gratuita</li>
+                        <li>Envía el paquete con todos los productos en su estado original</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuánto tiempo tarda el reembolso?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Una vez recibida y verificada la devolución, el reembolso se realizará en un plazo máximo de 14 días laborables. El importe se devolverá utilizando el mismo método de pago con el que se realizó la compra.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="section-title">Productos y Tallas</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo puedo saber mi talla?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Consulta nuestra <a href="guia-tallas.html">guía de tallas</a> donde encontrarás tablas detalladas con las medidas de cada talla. Te recomendamos medir tu cuerpo y comparar con nuestras tablas para encontrar la talla perfecta.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Los productos son talla real?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sí, todos nuestros productos siguen las medidas estándar de la industria. Sin embargo, te recomendamos consultar la guía de tallas específica de cada producto, ya que algunos pueden tener un corte más ajustado o más holgado.
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>¿No encuentras la respuesta que buscas?</h3>
+            <p>Contacta con nuestro servicio de atención al cliente:</p>
+            <p>Email: <a href="mailto:info@seenthelabel.com">info@seenthelabel.com</a></p>
+            <p>Teléfono: <a href="tel:+34912345678">+34 912 345 678</a></p>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-links">
+                    <a href="envio-devoluciones.html">Envío y devoluciones</a>
+                    <a href="guia-tallas.html">Guía de tallas</a>
+                    <a href="faq.html">Preguntas frecuentes</a>
+                    <a href="about.html">Acerca de</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="privacidad.html">Política de Privacidad</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://instagram.com/seenthelabel" target="_blank">Instagram</a>
+                    <a href="https://twitter.com/seenthelabel" target="_blank">Twitter</a>
+                    <a href="https://youtube.com/seenthelabel" target="_blank">Youtube</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="newsletter">
+                    <h3>Regístrate para recibir noticias y actualizaciones.</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address">
+                        <button type="submit">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                SEEN THE LABEL 2024
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad para mostrar/ocultar respuestas
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.toggle-icon');
+                
+                answer.classList.toggle('active');
+                icon.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html> 
