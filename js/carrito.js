@@ -48,8 +48,12 @@ function agregarAlCarrito(productoId, talla = null) {
                 cartCount.textContent = data.cart_count;
             }
             
-            // Mostrar mensaje de éxito
-            alert('Producto añadido al carrito');
+            // Mostrar mensaje de éxito usando toast
+            if (typeof mostrarToast === 'function') {
+                mostrarToast('Producto añadido al carrito');
+            } else {
+                alert('Producto añadido al carrito');
+            }
         } else {
             // Mostrar mensaje de error
             alert(data.message || 'Error al añadir el producto al carrito');

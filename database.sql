@@ -38,6 +38,90 @@ CREATE TABLE tallas_producto (
     UNIQUE KEY unique_producto_talla (producto_id, talla)
 );
 
+-- Tabla de usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    telefono VARCHAR(20),
+    direccion TEXT,
+    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    rol ENUM('usuario', 'admin') DEFAULT 'usuario'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de categorías
+CREATE TABLE IF NOT EXISTS categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    slug VARCHAR(50) NOT NULL UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de productos
+CREATE TABLE IF NOT EXISTS productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    categoria_id INT,
+    slug VARCHAR(100) NOT NULL UNIQUE,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de imágenes de productos
+CREATE TABLE IF NOT EXISTS imagenes_producto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    orden INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de tallas
+CREATE TABLE IF NOT EXISTS tallas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(10) NOT NULL,
+    descripcion VARCHAR(50)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de relación productos-tallas
+CREATE TABLE IF NOT EXISTS producto_tallas (
+    producto_id INT NOT NULL,
+    talla_id INT NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (producto_id, talla_id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE,
+    FOREIGN KEY (talla_id) REFERENCES tallas(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de pedidos
+CREATE TABLE IF NOT EXISTS pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente', 'procesando', 'enviado', 'entregado') DEFAULT 'pendiente',
+    total DECIMAL(10,2) NOT NULL,
+    direccion_envio TEXT NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de detalles de pedido
+CREATE TABLE IF NOT EXISTS detalles_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    talla VARCHAR(10),
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Insertar productos de ejemplo
 INSERT INTO productos (nombre, descripcion, precio, tiene_tallas) VALUES
 ('Camisa Ron', 'Camisa de diseño clásico perfecta para ocasiones formales y casuales.', 59.99, TRUE),
@@ -113,4 +197,36 @@ INSERT INTO imagenes_producto (producto_id, url, orden) VALUES
 (22, 'img/Riley-Sneaker_1.jpg', 1), (22, 'img/Riley-Sneaker_2.jpg', 2), (22, 'img/Riley-Sneaker_3.jpg', 3), (22, 'img/Riley-Sneaker_4.jpg', 4),
 (23, 'img/Chris-Sandal_1.jpg', 1), (23, 'img/Chris-Sandal_2.jpg', 2), (23, 'img/Chris-Sandal_3.jpg', 3), (23, 'img/Chris-Sandal_4.jpg', 4),
 (24, 'img/Christophe-Wallet_1.jpg', 1), (24, 'img/Christophe-Wallet_2.jpg', 2), (24, 'img/Christophe-Wallet_3.jpg', 3), (24, 'img/Christophe-Wallet_4.jpg', 4),
-(25, 'img/Levon-Sunglasses_1.jpg', 1), (25, 'img/Levon-Sunglasses_2.jpg', 2), (25, 'img/Levon-Sunglasses_3.jpg', 3), (25, 'img/Levon-Sunglasses_4.jpg', 4); 
+(25, 'img/Levon-Sunglasses_1.jpg', 1), (25, 'img/Levon-Sunglasses_2.jpg', 2), (25, 'img/Levon-Sunglasses_3.jpg', 3), (25, 'img/Levon-Sunglasses_4.jpg', 4);
+
+-- Insertar usuarios de prueba
+INSERT INTO usuarios (email, password, nombre, apellidos, rol) VALUES
+('admin@iesgrancapitan.org', '$2y$10$o93vMf5fyHaPKE1kByyzwOrGcqzC6/pfRwI5t3lgk.qPsyV6CfOhm', 'Admin', 'Principal', 'admin'),
+('ana@iesgrancapitan.org', '$2y$10$o93vMf5fyHaPKE1kByyzwOrGcqzC6/pfRwI5t3lgk.qPsyV6CfOhm', 'Ana', 'Serrano', 'usuario'),
+('gonzalo@iesgrancapitan.org', '$2y$10$o93vMf5fyHaPKE1kByyzwOrGcqzC6/pfRwI5t3lgk.qPsyV6CfOhm', 'Gonzalo', 'García', 'usuario'),
+('alberto@iesgrancapitan.org', '$2y$10$o93vMf5fyHaPKE1kByyzwOrGcqzC6/pfRwI5t3lgk.qPsyV6CfOhm', 'Alberto', 'García', 'usuario');
+
+-- Insertar pedidos de ejemplo
+INSERT INTO pedidos (usuario_id, fecha_creacion, estado, total, direccion_envio, metodo_pago) VALUES
+(2, '2024-03-15 10:30:00', 'entregado', 189.98, 'Calle Mayor 123, Córdoba', 'tarjeta'),
+(2, '2024-03-20 15:45:00', 'enviado', 149.99, 'Calle Mayor 123, Córdoba', 'paypal'),
+(3, '2024-03-18 09:15:00', 'procesando', 79.99, 'Avenida del Río 45, Córdoba', 'tarjeta'),
+(4, '2024-03-22 11:20:00', 'pendiente', 129.99, 'Plaza de las Tendillas 7, Córdoba', 'paypal');
+
+-- Insertar detalles de pedidos
+INSERT INTO detalles_pedido (pedido_id, producto_id, cantidad, precio, talla) VALUES
+-- Pedido 1 (Ana)
+(1, 1, 1, 59.99, 'M'),  -- Camisa Ron
+(1, 2, 1, 29.99, 'L'),  -- Camiseta Towne
+(1, 3, 1, 89.99, 'S'),  -- Pantalón Patrick
+
+-- Pedido 2 (Ana)
+(2, 5, 1, 149.99, 'M'), -- Chaqueta Barry
+
+-- Pedido 3 (Gonzalo)
+(3, 8, 1, 79.99, NULL), -- Bolso Ryan
+
+-- Pedido 4 (Alberto)
+(4, 7, 1, 129.99, 'L'); -- Chaqueta Lloyd
+
+-- Nota: La contraseña para todos los usuarios es '123abcABC' 

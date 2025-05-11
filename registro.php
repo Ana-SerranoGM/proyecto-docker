@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - SEEN THE LABEL</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .register-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        .terms-conditions {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .terms-conditions a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .terms-conditions a:hover {
+            text-decoration: underline;
+        }
+
+        .register-button {
+            padding: 12px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .register-button:hover {
+            background: #333;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .social-register {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-register p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            border-color: #000;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="nav-container">
+        <div class="nav-left">
+            <a href="index.php">Tienda</a>
+            <a href="about.php">Acerca de</a>
+            <a href="contacto.php">Contacto</a>
+        </div>
+        <div class="nav-center">
+            <a href="index.php" class="logo">SEEN THE LABEL</a>
+        </div>
+        <div class="nav-right">
+            <a href="login/index.php">Iniciar sesión</a>
+            <a href="registro.php">Registrarse</a>
+            <a href="carrito.php" class="cart-icon">
+                🛒
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Formulario de registro -->
+    <div class="register-container">
+        <h1 class="register-title">Crear cuenta</h1>
+        <form class="register-form">
+            <div class="form-group">
+                <label for="name">Nombre completo</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar contraseña</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="terms-conditions">
+                Al registrarte, aceptas nuestros <a href="/terminos">Términos y condiciones</a> y nuestra <a href="/privacidad">Política de privacidad</a>.
+            </div>
+            <button type="submit" class="register-button">Crear cuenta</button>
+        </form>
+        <div class="login-link">
+            ¿Ya tienes una cuenta? <a href="login/index.html">Inicia sesión</a>
+        </div>
+        <div class="social-register">
+            <p>O regístrate con</p>
+            <div class="social-buttons">
+                <button class="social-button">Google</button>
+                <button class="social-button">Facebook</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-links">
+                    <a href="/envio-devoluciones">Envío y devoluciones</a>
+                    <a href="/guia-tallas">Guía de tallas</a>
+                    <a href="/faq">Preguntas frecuentes</a>
+                    <a href="about.php">Acerca de</a>
+                    <a href="contacto.php">Contacto</a>
+                    <a href="/privacidad">Política de Privacidad</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://instagram.com/seenthelabel" target="_blank">Instagram</a>
+                    <a href="https://twitter.com/seenthelabel" target="_blank">Twitter</a>
+                    <a href="https://youtube.com/seenthelabel" target="_blank">Youtube</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="newsletter">
+                    <h3>Regístrate para recibir noticias y actualizaciones.</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address">
+                        <button type="submit">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                SEEN THE LABEL 2024
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Validación del formulario
+        const registerForm = document.querySelector('.register-form');
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Validación básica
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            
+            // Aquí iría la lógica de registro
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Password:', password);
+            
+            // Redirección temporal (simulada)
+            alert('Registro exitoso');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html> 
