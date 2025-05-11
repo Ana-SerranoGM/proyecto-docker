@@ -1,6 +1,17 @@
-DROP DATABASE IF EXISTS tienda_ropa;
-CREATE DATABASE IF NOT EXISTS tienda_ropa;
-USE tienda_ropa;
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+SET character_set_connection=utf8mb4;
+
+DROP DATABASE IF EXISTS seendb;
+CREATE DATABASE IF NOT EXISTS seendb
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+USE seendb;
+
+-- Asegurar que la conexión usa UTF-8
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+SET character_set_connection=utf8mb4;
 
 CREATE TABLE productos (
     id INT PRIMARY KEY AUTO_INCREMENT,
